@@ -11,3 +11,19 @@
 - 👶  user bot, ai, group management, hidden command and bugs
 - 💬  non stops bot, valid for 24/7 days and hours 
 </p>
+
+
+---
+
+**few steps for getting started**
+
+
+<a href="https://lazackorganisation.my.id" target="_blank"><img alt='PAIRING' src='https://img.shields.io/badge/PAIRING CODE-magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
+
+
+
+**Get in touch with the creator**
+
+
+<a href="https://home.lazackorganisation.my,id"><img alt='OWNER' src='https://img.shields.io/badge/GET IN TOUCH-magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
+
