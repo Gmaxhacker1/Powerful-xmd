@@ -27,3 +27,9 @@
 
 <a href="https://home.lazackorganisation.my,id"><img alt='OWNER' src='https://img.shields.io/badge/GET IN TOUCH-magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
 
+
+---
+
+**Now deploy to heroku**
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Gmaxhacker1/Powerful-xmd)
