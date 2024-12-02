@@ -1,69 +1,85 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Rockstar-ExtraBold&color=3a6af3&lines=KARIBU+GCYBER+BOT+IMEANDALIWA+NA;+Gmaxhacker1+PAMOJA+NA+LAZACK28;ASANTE+KWA+KUTEMBELEA+REPO+YETU)](https://git.io/typing-svg)
+Hai kamu iser nightmare Md 
 
-<img src="https://i.imgur.com/dBaSKWF.gif" height="90" width="100%">
+📌 Script ini selalu Up to Date
+📌 Script ini menggunakan acc ip untuk menghindari pencurian atau penjualan secara ilegal
+📌 Hargai creator sebisa kalian apa susahnya menghargai doang
+📌 Kalai menjumpai script dengan owner yang asing segera lapor ke Owner
 
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Black+Ops+One&size=50&pause=1000&color=F70707&center=true&width=910&height=100&lines=GMAX+TECH+TEAM" alt="Typing SVG" /></a>
-  </p>
-<img src="https://i.imgur.com/dBaSKWF.gif" height="90" width="100%">
+Owner:
+wa.me/6282285357346 (tio)
 
-***[GROUP](https://chat.whatsapp.com/IIpL6gf6dcq4ial8gaJLE9)***
+/**•───── MERRY ✧ MD ─────• **/
+```Up to Date 1.2.4```
 
+Ket: 
 
-------------------------------------------
+[ System ] (plugins dengan awalan _)
 
-**Genenerate pairing code**
+[ *new* ]
 
+```added```
 
+_File_
+- [ Simple.js ] function send list button & image (sendListButton && sendListImageButton)
+- [ Handler.js ] joinonly & premiumonly (pemindahan dengan sebelumnya menggunakan plugins)
+- 
+_Plugins_
+- [ Internet ] iplook (melihat lokasi IP)
+- [ Maker ] nulis (menulis menggunakan bot)
+- [ System ] template response (penambalan respon button)
+- [ Own ] set template (penambalan opsi select template dalam button)
+- [ Main ] main menu (+button template)
+- [ Own ] fixdb (penambalan jika idgc mengalami eror)
+- [ Download ] capcut (downloader video capcut)
+- ...Coming soon
 
-<a href="https://wa-session-1.onrender.com/" target="_blank"><img alt='PAIRING' src='https://img.shields.io/badge/PAIRING CODE-magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
+/**•───── MERRY ✧ MD ─────• **/
+const list = {
+    title: "Klik Disini!",
+    sections: [{
+        title: "Menu",
+        highlight_label: "Recommended",
+        rows: [{
+                title: "menu list",
+                description: "menampilkan menu list",
+                id: ".menu",
+            },
+            {
+                title: "menu all",
+                description: "tampilkan semua menu",
+                id: ".menu all",
+            },
+        ],
+    }, ],
+};
 
+let quick = [
+{
+                "name": "cta_copy",
+                "buttonParamsJson": "{\"display_text\":\"quick_reply\",\"id\":\".os\"}"
+              }
+]
 
+#Example serialize [ list button ] {
+conn.sendListButton(m.chat, "List menu", list, footer)
+} 
 
-**contact with me**
+#Example serialize [ list button dg foto ] {
+conn.sendListImageButton(m.chat, "List menu", list, footer, thumbnail)
+}
 
+#Example serialize [ url button ] {
+conn.sendUrlButton(m.chat, "List menu", quick, footer)
+}
 
-<a href="https://wa.link/kho6x6"><img alt='OWNER' src='https://img.shields.io/badge/GET IN TOUCH-magenta?style=for-the-badge&logo=opencv&logoColor=white'/></a>
+#Example serialize [ url button dg foto ] {
+conn.sendUrlImageButton(m.chat, "List menu", quick, footer, thumbnail)
+}
 
+#Example serialize [ foto dg list button & url button ] {
+conn.sendListImageButton(m.chat, "List menu", quick, footer, thumbnail, quick)
+}
 
--------------------------
-
-***BOT FEATURES 💌***
-
-| Menu ⁠➜ | Bot | Group | Search | Download | Tools | Ai | Game | Fun | Owner | Bug | Convert | List |
-| --------| --- | ----- | ------ | -------- | ----- | -- | ---- | --- | ----- | ----| --------| -----|
-| Work ➜ |  ✅ |   ✅  |    ✅  |     ✅   |   ✅  | ✅ |   ✅ |  ✅ |  ✅   | ✅  |    ✅   |  ✅  |
-
----------------------
-
-*****DEPLOYMENT SITE👇*****
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Gmaxhacker1/GCYBER-BOT)
-  
-<a href='https://replit.com/~' target="_blank"><img alt='Deploy Replit' src='https://img.shields.io/badge/DEPLOY REPLIT-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=black&color=black'/></a>
-
-----------------------
-
-***[TUTORIAL HOW TO DEPLOY](https://vm.tiktok.com/ZMrEaehwD/)***
-
-----------------------
-
-****MAIN DEV EDITOR****
-
- [![Gmaxhacker1](https://github.com/Gmaxhacker1.png?size=100)](https://github.com/Gmaxhacker1)
- [![Lazack28](https://github.com/Lazack28.png?size=100)](https://github.com/Lazack28)
- 
-
-----------------------
-
-<h2 align="center">  NOTICE
-</h2>
-   
- 
--*cyber bots Tupo hapa kukusaidia Endapo utapata changomoto yeyote unaweza kuwasiliana nasi ili`*
-- *Ninaweza kukusaidia katika uwekaji wa roboti na uhariri wa msimbo wa roboti ikiwa nitapata muda wa kufanya hivyo*
-
-
-
-
-
-         CREDIT TO Mr Gmax & Lazack28
+#Example serialize [  list button & url button ] {
+conn.sendListButton(m.chat, "List menu", quick, footer, quick)
+}
