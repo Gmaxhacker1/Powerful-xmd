@@ -1,50 +1,49 @@
-import './config.js'
-import './function/settings/settings.js'
-import { fetchLatestBaileysVersion } from '@adiwajshing/baileys'
-import cfont from "cfonts";
+import './config.js';
+import './function/settings/settings.js';
+import { fetchLatestBaileysVersion } from '@adiwajshing/baileys';
+import cfont from 'cfonts';
 import { spawn } from 'child_process';
-import { createInterface } from "readline";
+import { createInterface } from 'readline';
 import { promises as fsPromises } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { sizeFormatter } from 'human-readable';
-
 import axios from 'axios';
-import cheerio from "cheerio"
+// Fixing cheerio import issue by using a named import.
+import * as cheerio from 'cheerio';
 import os from 'os';
-import path from 'path';
-import moment from 'moment-timezone'
+import moment from 'moment-timezone';
 import fs from 'fs';
-import yargs from "yargs";
+import yargs from 'yargs';
 import express from 'express';
 import chalk from 'chalk';
 
-let formatSize = sizeFormatter({
+const formatSize = sizeFormatter({
   std: 'JEDEC',
-  decimalPlaces: '2',
+  decimalPlaces: 2,
   keepTrailingZeroes: false,
-  render: (literal, symbol) => `${literal} ${symbol}B`
-})
+  render: (literal, symbol) => `${literal} ${symbol}B`,
+});
 
-const { say } = cfont
-const { tz } = moment
+const { say } = cfont;
+const { tz } = moment;
 const app = express();
 const port = process.env.PORT || 8079;
 const time = tz('Asia/Jakarta').format('HH:mm:ss');
-const currentFilePath = new URL(import.meta.url).pathname;
+const currentFilePath = fileURLToPath(import.meta.url);
 
-say(info.figlet, {
-  font: "simpleBlock",
-  align: "center",
-  gradient: ["yellow", "cyan", "red"],
-  transitionGradient: 1,
-})
+say('Bot Dashboard', {
+  font: 'simpleBlock',
+  align: 'center',
+  gradient: ['yellow', 'cyan', 'red'],
+  transitionGradient: true,
+});
 
-say('by ' + info.nameown, {
-  font: "tiny",
-  align: "center",
-  colors: ["white"]
-})
+say('by Bot Owner', {
+  font: 'tiny',
+  align: 'center',
+  colors: ['white'],
+});
 
 app.listen(port, () => {
   console.log(chalk.green(`⚡ Port ${port} is now open`));
@@ -58,7 +57,7 @@ if (!fs.existsSync(folderPath)) {
 
 let isRunning = false;
 
-const rl = createInterface(process.stdin, process.stdout)
+const rl = createInterface(process.stdin, process.stdout);
 
 async function start(file) {
   if (isRunning) return;
@@ -68,35 +67,38 @@ async function start(file) {
     stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
   });
 
-  p.on("message", data => {
-    console.log(chalk.magenta("[ ✅ Accepted  ]", data))
+  p.on('message', (data) => {
+    console.log(chalk.magenta('[ ✅ Accepted  ]', data));
     switch (data) {
-      case "reset":
-        p.process.kill()
-        isRunning = false
-        start.apply(this, arguments)
-        break
-      case "uptime":
-        p.send(process.uptime())
-        break
+      case 'reset':
+        p.kill();
+        isRunning = false;
+        start.apply(this, arguments);
+        break;
+      case 'uptime':
+        p.send(process.uptime());
+        break;
     }
-  })
+  });
 
-  p.on("exit", (_, code) => {
-    isRunning = false
-    console.error("[❗] Exited with code:", code)
-    if (code !== 0) return start(file)
+  p.on('exit', (code) => {
+    isRunning = false;
+    console.error('[❗] Exited with code:', code);
+    if (code !== 0) return start(file);
     watchFile(args[0], () => {
-      unwatchFile(args[0])
-      start(file)
-    })
-  })
+      unwatchFile(args[0]);
+      start(file);
+    });
+  });
 
-  let opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
-  if (!opts["test"])
-    if (!rl.listenerCount()) rl.on("line", line => {
-      p.emit("message", line.trim())
-    })
+  const opts = yargs(process.argv.slice(2)).exitProcess(false).parse();
+  if (!opts['test']) {
+    if (!rl.listenerCount('line')) {
+      rl.on('line', (line) => {
+        p.emit('message', line.trim());
+      });
+    }
+  }
 
   const packageJsonPath = join(dirname(currentFilePath), './package.json');
   const pluginsFolder = join(dirname(currentFilePath), 'plugins');
@@ -109,16 +111,17 @@ async function start(file) {
     }
 
     try {
-      console.log(chalk.bgGreen(chalk.white(`Baileys Library Version ${(await fetchLatestBaileysVersion()).version} is installed`)));
+      const { version } = await fetchLatestBaileysVersion();
+      console.log(chalk.bgGreen(chalk.white(`Baileys Library Version ${version} is installed`)));
     } catch (e) {
       console.error(chalk.bgRed(chalk.white('Baileys Library is not installed')));
     }
-  })
+  });
 
   try {
     const packageJsonData = await fsPromises.readFile(packageJsonPath, 'utf-8');
     const packageJsonObj = JSON.parse(packageJsonData);
-    const { data } = await axios.get('https://api.ipify.org')
+    const { data } = await axios.get('https://api.ipify.org');
     const ramInGB = os.totalmem() / (1024 * 1024 * 1024);
     const freeRamInGB = os.freemem() / (1024 * 1024 * 1024);
 
@@ -135,8 +138,7 @@ async function start(file) {
 ┣ Features: ${chalk.white(totalFoldersAndFiles.files)} Features
 ╰──⎔⎔ 
 
-⎔──⎔⎔ Creator: ${chalk.bold.cyan('Tio')} ⎔⎔──⎔`)
-
+⎔──⎔⎔ Creator: ${chalk.bold.cyan('Tio')} ⎔⎔──⎔`);
   } catch (err) {
     console.error(chalk.red(`Unable to read package.json file: ${err}`));
   }
@@ -144,29 +146,13 @@ async function start(file) {
   setInterval(() => {}, 1000);
 }
 
-function getTotalFoldersAndFiles(folderPath) {
-  return new Promise((resolve, reject) => {
-    fs.readdir(folderPath, (err, files) => {
-      if (err) {
-        reject(err);
-      } else {
-        let folders = 0;
-        let filesCount = 0;
-        files.forEach((file) => {
-          const filePath = join(folderPath, file);
-          if (fs.statSync(filePath).isDirectory()) {
-            folders++;
-          } else {
-            filesCount++;
-          }
-        });
-        resolve({ folders, files: filesCount });
-      }
-    });
-  });
+async function getTotalFoldersAndFiles(folderPath) {
+  const entries = await fsPromises.readdir(folderPath, { withFileTypes: true });
+  const folders = entries.filter((entry) => entry.isDirectory()).length;
+  const files = entries.filter((entry) => entry.isFile()).length;
+
+  return { folders, files };
 }
 
-/**
- * Start the system
- */
+// Start the system
 start('main.js');
